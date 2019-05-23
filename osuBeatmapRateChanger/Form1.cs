@@ -302,6 +302,11 @@ namespace osuBeatmapRateChanger
                         str += bm.HitObjects[i].pos_x + "," + bm.HitObjects[i].pos_y + "," + (int)((float)bm.HitObjects[i].offset / rate) + "," + s[3] + "," + s[4] + "\n";
                         continue;
                     }
+                    if(bm.Mode == "0" && s[3].Equals("12"))
+                    {
+                        str += bm.HitObjects[i].pos_x + "," + bm.HitObjects[i].pos_y + "," + (int)((float)bm.HitObjects[i].offset / rate) + "," + s[3] +","+ s[4] +","+ (int)(float.Parse(s[5]) / rate) +","+ s[6] + "\n";
+                        continue;
+                    }
                     str += bm.HitObjects[i].pos_x + "," + bm.HitObjects[i].pos_y + "," +(int)( (float)bm.HitObjects[i].offset/rate) + bm.HitObjects[i].etc + "\n";
                 }
                 
