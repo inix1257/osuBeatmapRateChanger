@@ -1,9 +1,0 @@
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\bin\Release\osuBeatmapRateChanger.exe.config
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\bin\Release\osuBeatmapRateChanger.exe
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\bin\Release\osuBeatmapRateChanger.pdb
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\obj\Release\osuBeatmapRateChanger.Form1.resources
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\obj\Release\osuBeatmapRateChanger.Properties.Resources.resources
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\obj\Release\osuBeatmapRateChanger.csproj.GenerateResource.cache
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\obj\Release\osuBeatmapRateChanger.csproj.CoreCompileInputs.cache
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\obj\Release\osuBeatmapRateChanger.exe
-C:\Users\xperv\source\repos\osuBeatmapRateChanger\osuBeatmapRateChanger\obj\Release\osuBeatmapRateChanger.pdb
