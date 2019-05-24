@@ -23,6 +23,9 @@ namespace osuBeatmapRateChanger
         private float statMtpr = 1f;
         private float CSMtpr = 1f;
 
+        private int firstnoteOffset = 0;
+        private int lastnoteOffset = 0;
+
         private Boolean isARExists = false;
 
         public Parser(Beatmap bm, StreamReader reader = null)
@@ -212,6 +215,10 @@ namespace osuBeatmapRateChanger
                         break;
 
                     case "HitObjects":
+                        if(bm.ObjectsCount == 0)
+                        {
+                            firstnoteOffset = int.Parse(line.Split(',')[2]);
+                        }
                         bm.ObjectsCount++;
                         String[] str = line.Split(',');
                         HitObjectType objType = (HitObjectType)int.Parse(str[3]);
@@ -221,20 +228,48 @@ namespace osuBeatmapRateChanger
                 }
             }
 
+            lastnoteOffset = bm.HitObjects[bm.ObjectsCount-1].offset;
+
             double mainBPM = 0;
-            int prevOffset = 0, offsetGap = 0; ;
+            double prevBPM = 0;
+            int prevOffset = 0, offsetGap = 0;
+            Boolean isSingleBPM = true;
+            double currBPM = 0;
+            int currOffset = 0;
+
             foreach(double[] tmp in bm.TimingPoints)
             {
                 if (tmp[1] < 0) continue;
-                double currBPM = tmp[1];
-                int currOffset = (int)tmp[0];
+                currBPM = tmp[1];
+                currOffset = (int)tmp[0];
+
+                Console.WriteLine("currOffset : " + currOffset);
+                Console.WriteLine("currBPM : " + currBPM);
 
                 if(offsetGap < currOffset - prevOffset)
                 {
+                    if (offsetGap != 0) isSingleBPM = false;
                     offsetGap = currOffset - prevOffset;
-                    mainBPM = currBPM;
+                    
+                    mainBPM = prevBPM;
+                    
+                    Console.WriteLine("new longest bpm! : " + mainBPM);
                 }
+                prevOffset = currOffset;
+                prevBPM = currBPM;
             }
+
+            if(lastnoteOffset - currOffset > offsetGap)
+            {
+                mainBPM = prevBPM;
+            }
+
+            if (isSingleBPM)
+            {
+                Console.WriteLine("single bpm detected");
+                mainBPM = prevBPM;
+            }
+            
 
             bm.mainBPM = (float)Math.Round((1000d / mainBPM) * 60d);
             Console.WriteLine("mainBPM : " + bm.mainBPM);

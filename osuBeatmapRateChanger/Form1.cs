@@ -161,7 +161,6 @@ namespace osuBeatmapRateChanger
                     } while (prcFFMPEG.HasExited == false);
                 }catch(Exception er)
                 {
-                    Console.WriteLine("312321" + er.ToString());
                     progressBar1.Value = 0;
                     percentTXT.Text = "done!";
                 }
