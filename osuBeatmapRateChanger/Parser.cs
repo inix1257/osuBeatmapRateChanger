@@ -27,6 +27,7 @@ namespace osuBeatmapRateChanger
         private int lastnoteOffset = 0;
 
         private Boolean isARExists = false;
+        private Boolean isBGfound = false;
 
         public Parser(Beatmap bm, StreamReader reader = null)
         {
@@ -187,6 +188,8 @@ namespace osuBeatmapRateChanger
                     case "Events":
                         if(line.Contains(".png") || line.Contains(".jpg"))
                         {
+                            if (isBGfound) continue;
+                            isBGfound = true;
                             bm.Events_bg = line;
                             break;
                         }
@@ -242,18 +245,13 @@ namespace osuBeatmapRateChanger
                 if (tmp[1] < 0) continue;
                 currBPM = tmp[1];
                 currOffset = (int)tmp[0];
-
-                Console.WriteLine("currOffset : " + currOffset);
-                Console.WriteLine("currBPM : " + currBPM);
-
+                
                 if(offsetGap < currOffset - prevOffset)
                 {
                     if (offsetGap != 0) isSingleBPM = false;
                     offsetGap = currOffset - prevOffset;
                     
                     mainBPM = prevBPM;
-                    
-                    Console.WriteLine("new longest bpm! : " + mainBPM);
                 }
                 prevOffset = currOffset;
                 prevBPM = currBPM;
@@ -264,15 +262,8 @@ namespace osuBeatmapRateChanger
                 mainBPM = prevBPM;
             }
 
-            if (isSingleBPM)
-            {
-                Console.WriteLine("single bpm detected");
-                mainBPM = prevBPM;
-            }
-            
-
+            if (isSingleBPM) mainBPM = prevBPM;
             bm.mainBPM = (float)Math.Round((1000d / mainBPM) * 60d);
-            Console.WriteLine("mainBPM : " + bm.mainBPM);
 
             if (!isARExists) bm.AR = bm.OD;
            
