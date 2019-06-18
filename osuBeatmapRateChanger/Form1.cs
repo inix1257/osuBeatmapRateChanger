@@ -66,6 +66,11 @@ namespace osuBeatmapRateChanger
         {
         }
 
+        private void pitchCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -85,7 +90,14 @@ namespace osuBeatmapRateChanger
                 TimeSpan estimatedTime = TimeSpan.MaxValue;
 
                 StreamReader srFFMPEG;
-                string strFFMPEGCmd = " -i \"" + dirname + bm.AudioFileName + "\" -filter:a \"atempo=" + rate + "\" -y \"" + dirname + bm.AudioFileName.Replace(".mp3", "") + " x" + rate + ".mp3\"";
+                string strFFMPEGCmd = ""; 
+                    if (pitchCheckBox.Checked)
+                {
+                    strFFMPEGCmd = " -i \"" + dirname + bm.AudioFileName + "\" -filter:a \"atempo=" + rate + "\" -y -b:a 192k \"" + dirname + bm.AudioFileName.Replace(".mp3", "") + " x" + rate + ".mp3\"";
+                }
+                else{
+                    strFFMPEGCmd = " -i \"" + dirname + bm.AudioFileName + "\" -filter:a \"asetrate=" + (44100*rate) + "\" -y \"" + dirname + bm.AudioFileName.Replace(".mp3", "") + " x" + rate + ".mp3\"";
+                }
                 Console.WriteLine(strFFMPEGCmd);
 
                 psiProcInfo.FileName = Application.StartupPath + "\\ffmpeg.exe";

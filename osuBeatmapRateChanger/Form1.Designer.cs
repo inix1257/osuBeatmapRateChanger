@@ -51,6 +51,7 @@ namespace osuBeatmapRateChanger
             this.bpmoutput = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.pitchCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ratebox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +75,7 @@ namespace osuBeatmapRateChanger
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(47, 221);
+            this.progressBar1.Location = new System.Drawing.Point(47, 235);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(325, 20);
             this.progressBar1.TabIndex = 3;
@@ -82,7 +83,7 @@ namespace osuBeatmapRateChanger
             // percentTXT
             // 
             this.percentTXT.AutoSize = true;
-            this.percentTXT.Location = new System.Drawing.Point(14, 225);
+            this.percentTXT.Location = new System.Drawing.Point(14, 239);
             this.percentTXT.Name = "percentTXT";
             this.percentTXT.Size = new System.Drawing.Size(21, 12);
             this.percentTXT.TabIndex = 4;
@@ -131,7 +132,7 @@ namespace osuBeatmapRateChanger
             // adjustCheckBox
             // 
             this.adjustCheckBox.AutoSize = true;
-            this.adjustCheckBox.Location = new System.Drawing.Point(131, 45);
+            this.adjustCheckBox.Location = new System.Drawing.Point(220, 183);
             this.adjustCheckBox.Name = "adjustCheckBox";
             this.adjustCheckBox.Size = new System.Drawing.Size(114, 16);
             this.adjustCheckBox.TabIndex = 7;
@@ -251,18 +252,32 @@ namespace osuBeatmapRateChanger
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(44, 255);
+            this.label8.Location = new System.Drawing.Point(44, 269);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(328, 12);
             this.label8.TabIndex = 18;
             this.label8.Text = "by 404 AimNotFound (https://osu.ppy.sh/users/2688581)";
+            // 
+            // pitchCheckBox
+            // 
+            this.pitchCheckBox.AutoSize = true;
+            this.pitchCheckBox.Checked = true;
+            this.pitchCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pitchCheckBox.Location = new System.Drawing.Point(220, 206);
+            this.pitchCheckBox.Name = "pitchCheckBox";
+            this.pitchCheckBox.Size = new System.Drawing.Size(103, 16);
+            this.pitchCheckBox.TabIndex = 19;
+            this.pitchCheckBox.Text = "maintain pitch";
+            this.pitchCheckBox.UseVisualStyleBackColor = true;
+            this.pitchCheckBox.CheckedChanged += new System.EventHandler(this.pitchCheckBox_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(384, 276);
+            this.ClientSize = new System.Drawing.Size(384, 291);
+            this.Controls.Add(this.pitchCheckBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.bpmoutput);
             this.Controls.Add(this.label7);
@@ -317,6 +332,7 @@ namespace osuBeatmapRateChanger
         private System.Windows.Forms.TextBox bpmoutput;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox pitchCheckBox;
     }
 }
 
